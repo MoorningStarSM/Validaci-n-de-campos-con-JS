@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Formulario request</title>
+</head>
+
+<body>
+    <form name="forma01" action="recibe.html" method="POST">
+        <label>
+            Nombre:
+            <input id="campo1" type="text" name="nombre" placeholder="Escribe tu nombre" required>
+        </label>
+
+        <br>
+        <label>Correo:</label>
+        <input type="email" name="correo" value="@udg.mx">
+        <br>
+        <label for="sexo">Género:</label>
+        <input type="radio" name="sexo" value="F">Femenino
+        <input type="radio" name="sexo" value="M">Masculino
+        <br>
+        <input type="checkbox" name="boletin" value="1" checked>
+        <label for="boletin">Recibir Boletín</label>
+        <br>
+        <label for="comentario">Comentario:</label><br>
+        <textarea name="comentario" cols="30" rows="5"></textarea>
+        <br>
+        <label for="carrera">Carrera:</label>
+        <select name="carrera">
+            <option value="0" selected>Selecciona</option>
+            <option value="1">Ing. Informática</option>
+            <option value="2">Ing. Computación</option>
+        </select>
+        <br>
+        <label for="pasw">Contraseña:</label>
+        <input type="password" name="pasw">
+        <br>
+        <label for="promedio">Promedio:</label>
+        <input type="number" name="promedio" min="60" max="100">
+        <br>
+        <label for="fecha">Fecha nacimiento:</label>
+        <input type="date" name="fecha">
+
+        <br>
+        <input onClick="validarFormulario(); return false;" type="submit" value="Enviar con input">
+    </form>
+
+    <script>
+        function validarFormulario() {
+            var nombre = document.forms["forma01"]["nombre"].value;
+            var correo = document.forms["forma01"]["correo"].value;
+            var sexo = document.querySelector('input[name="sexo"]:checked');
+            var boletin = document.forms["forma01"]["boletin"].checked;
+            var comentario = document.forms["forma01"]["comentario"].value;
+            var carrera = document.forms["forma01"]["carrera"].value;
+            var pasw = document.forms["forma01"]["pasw"].value;
+            var promedio = document.forms["forma01"]["promedio"].value;
+            var fecha = document.forms["forma01"]["fecha"].value;
+
+            if (nombre === "" || correo === "" || !sexo || comentario === "" || carrera === "0" || pasw === "" || promedio === "" || fecha === "") {
+                alert("Faltan campos por llenar");
+            } else {
+                var mensaje = "Nombre: " + nombre + "\n";
+                mensaje += "Correo: " + correo + "\n";
+                mensaje += "Género: " + sexo.value + "\n";
+                mensaje += "Recibir Boletín: " + (boletin ? "Sí" : "No") + "\n";
+                mensaje += "Comentario: " + comentario + "\n";
+                mensaje += "Carrera: " + document.querySelector('select[name="carrera"] option:checked').text + "\n";
+                mensaje += "Contraseña: " + pasw + "\n";
+                mensaje += "Promedio: " + promedio + "\n";
+                mensaje += "Fecha de nacimiento: " + fecha + "\n";
+
+                alert(mensaje);
+            }
+        }
+    </script>
+</body>
+
+</html>
